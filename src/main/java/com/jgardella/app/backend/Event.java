@@ -1,6 +1,8 @@
+package com.jgardella.app.backend;
+
 import java.time.LocalDateTime;
 
-class Event implements Comparable<Event>
+public class Event implements Comparable<Event>
 {
 	private String name;
 	private String type;
