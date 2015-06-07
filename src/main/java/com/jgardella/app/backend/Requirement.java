@@ -5,15 +5,15 @@ public class Requirement
 {
 	private ReqType reqType;
 	private int amount;
-	private String[] eventTypes;
+	private String eventType;
 
 	public enum ReqType { CONSECUTIVE, ABSOLUTE, LAST };
 
-	public Requirement(ReqType type, int amount, String... eventTypes)
+	public Requirement(ReqType type, int amount, String eventType)
 	{
 		this.reqType = type;
 		this.amount = amount;
-		this.eventTypes = eventTypes;
+		this.eventType = eventType;
 	}
 
 	public ReqType getType()
@@ -26,9 +26,9 @@ public class Requirement
 		return amount;
 	}
 
-	public String[] getEventTypes()
+	public String getEventType()
 	{
-		return eventTypes;
+		return eventType;
 	}
 
 }
