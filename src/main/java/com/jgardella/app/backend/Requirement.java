@@ -1,4 +1,4 @@
-package com.jgardella.app;
+package com.jgardella.app.backend;
 
 // Attendance requirement definition
 public class Requirement
