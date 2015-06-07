@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Before;
@@ -36,7 +37,12 @@ public class XLSParserTest
 	@Test
 	public void parsedEventShouldContainEventTime()
 	{
-
+		LocalDateTime eventTime = parsedEvent.getDate();
+		assertTrue("Year should be 2015", eventTime.getYear() == 2015);
+		assertTrue("Month should be 4", eventTime.getMonthValue() == 4);
+		assertTrue("Day should be 28", eventTime.getDayOfMonth() == 28);
+		assertTrue("Hour should be 21", eventTime.getHour() == 21);
+		assertTrue("Minutes should be 0", eventTime.getMinute() == 0);
 	}
 
 	@Test
