@@ -2,23 +2,35 @@ package com.jgardella.app.backend;
 
 public class Member
 {
-	private String name;
+	private String firstName;
+	private String lastName;
 	private int id;
 
-	public Member(String name, int id)
+	public Member(String firstName, String lastName, int id)
 	{
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.id = id;
 	}
 
-	public String getName()
+	public String getFirstName()
 	{
-		return name;
+		return frstName;
 	}
 
-	public void setName(String name)
+	public void setFirstName(String name)
 	{
-		this.name = name;
+		this.firstName = name;
+	}
+
+	public String getLastName()
+	{
+		return lastName;
+	}
+
+	public void setLastName(String name)
+	{
+		this.lastName = name;
 	}
 
 	public int getId()
