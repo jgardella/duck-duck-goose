@@ -1,5 +1,6 @@
 package com.jgardella.app.backend;
 
+import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 public class Event implements Comparable<Event>
@@ -50,6 +51,11 @@ public class Event implements Comparable<Event>
 	public void addMemberToAttendance(Member member)
 	{
 		attendance.add(member);
+	}
+
+	public ArrayList<Member> getAttendance()
+	{
+		return attendance;
 	}
 
 	public int compareTo(Event event)
