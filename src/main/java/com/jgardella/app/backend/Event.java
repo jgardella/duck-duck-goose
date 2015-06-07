@@ -7,12 +7,14 @@ public class Event implements Comparable<Event>
 	private String name;
 	private String type;
 	private LocalDateTime date;
+	private ArrayList<Member> attendance;
 
 	public Event(String name, String type, LocalDateTime date)
 	{
 		this.name = name;
 		this.type = type;
 		this.date = date;
+		this.attendance = new ArrayList<Member>();
 	}
 
 	public String getName()
@@ -43,6 +45,11 @@ public class Event implements Comparable<Event>
 	public void setDate(LocalDateTime date)
 	{
 		this.date = date;
+	}
+
+	public void addMemberToAttendance(Member member)
+	{
+		attendance.add(member);
 	}
 
 	public int compareTo(Event event)
