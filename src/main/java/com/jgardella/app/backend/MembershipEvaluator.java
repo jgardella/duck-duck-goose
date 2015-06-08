@@ -97,8 +97,9 @@ public class MembershipEvaluator
 		{
 		case ABSOLUTE:
 			int numAbs = 0;
-			for(Event event : eventList)
+			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
 			{
+				Event event = eventList.get(i);
 				if(event.getAttendance().contains(member))
 				{
 					numAbs++;
@@ -111,8 +112,9 @@ public class MembershipEvaluator
 			return false;
 		case CONSECUTIVE:
 			int numConsecutive = 0;
-			for(Event event : eventList)
+			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
 			{
+				Event event = eventList.get(i);
 				if(event.getAttendance().contains(member))
 				{
 					numConsecutive++;
@@ -129,8 +131,9 @@ public class MembershipEvaluator
 			return false;
 		case LAST:
 			int numLast = 0;
-			for(Event event : eventList)
+			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
 			{
+				Event event = eventList.get(i);
 				if(event.getAttendance().contains(member))
 				{
 					numLast++;
