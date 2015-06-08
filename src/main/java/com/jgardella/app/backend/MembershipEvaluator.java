@@ -95,21 +95,6 @@ public class MembershipEvaluator
 		ArrayList<Event> eventList = eventMap.get(req.getEventType());
 		switch(req.getType())
 		{
-		case ABSOLUTE:
-			int numAbs = 0;
-			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
-			{
-				Event event = eventList.get(i);
-				if(event.getAttendance().contains(member))
-				{
-					numAbs++;
-					if(numAbs >= req.getAmount())
-					{
-						return true;
-					}
-				}
-			}
-			return false;
 		case CONSECUTIVE:
 			int numConsecutive = 0;
 			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
@@ -129,15 +114,15 @@ public class MembershipEvaluator
 				}
 			}
 			return false;
-		case LAST:
-			int numLast = 0;
+		case ABSOLUTE:
+			int numAbsolute = 0;
 			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
 			{
 				Event event = eventList.get(i);
 				if(event.getAttendance().contains(member))
 				{
-					numLast++;
-					if(numLast >= req.getAmount())
+					numAbsolute++;
+					if(numAbsolute >= req.getAmount())
 					{
 						return true;
 					}

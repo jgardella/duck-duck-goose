@@ -8,7 +8,7 @@ public class Requirement
 	private int eventNumLimit;
 	private String eventType;
 
-	public enum ReqType { CONSECUTIVE, ABSOLUTE, LAST };
+	public enum ReqType { CONSECUTIVE, ABSOLUTE };
 
 	public Requirement(ReqType type, int amount, String eventType, int eventNumLimit)
 	{
