@@ -49,7 +49,9 @@ public class XLSParser
 				event.addMemberToAttendance(new Member(firstName, lastName, id));
 			}
 		}
-
+		
+		workbook.close();
+		
 		return event;
 	}
 }
