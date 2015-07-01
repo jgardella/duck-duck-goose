@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.Collections;
 
 import com.jgardella.app.backend.Requirement;
-import com.jgardella.app.backend.Requirement.ReqType;
 import com.jgardella.app.backend.Member.Status;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
