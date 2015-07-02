@@ -11,6 +11,14 @@
 	  fx:controller="com.jgardella.app.frontend.MainWindow">
   <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
 
+  <top>
+  	<VBox>
+        <padding><Insets bottom="10"/></padding>
+  		<HBox alignment="CENTER"><Label style="-fx-font-size: 30;">Duck Duck Goose</Label></HBox>
+  		<HBox alignment="CENTER"><Label style="-fx-font-size: 15;">Attendance Tracker</Label></HBox>
+	</VBox>
+  </top>
+
   <center>	  
 	  <ScrollPane fx:id="eventTypeScrollPane" hbarPolicy="NEVER" fitToHeight="true">
 	      <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>

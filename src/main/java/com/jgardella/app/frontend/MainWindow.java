@@ -47,6 +47,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 			
 			primaryStage.setTitle("Duck Duck Goose");
 			primaryStage.setScene(scene);
+			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch (IOException e) 
 		{
@@ -126,6 +127,10 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		evaluator.evaluateMembership();
 		
 		ArrayList<Member> activeMembers = evaluator.getActiveMembers();
+		for(Member member : activeMembers)
+		{
+			System.out.println(member.getFullName());
+		}
 		
 		ArrayList<Member> inactiveMembers = evaluator.getNonactiveMembers();
 		// display membership status

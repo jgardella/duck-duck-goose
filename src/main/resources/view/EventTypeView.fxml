@@ -27,7 +27,7 @@
 		  <TextField prefWidth="40" fx:id="numReqField"/>
 		  <Label>out of</Label>
 		  <TextField prefWidth="40" fx:id="totalField"/>
-		  <ComboBox fx:id="reqTypeComboBox" value="CONSECUTIVE">
+		  <ComboBox fx:id="reqTypeComboBox" value="ABSOLUTE">
 		  	<items>
 		  		<FXCollections fx:factory="observableArrayList">
 		  			<String fx:value="CONSECUTIVE"/>
