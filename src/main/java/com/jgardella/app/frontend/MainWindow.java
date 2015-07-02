@@ -2,6 +2,8 @@ package com.jgardella.app.frontend;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -10,8 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -105,21 +111,11 @@ public class MainWindow extends Application implements EventTypeViewCallback
 			evaluator.parseEvents(eventDirs);
 		} catch (InvalidFormatException e) 
 		{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error Parsing XLS");
-			alert.setHeaderText("Encountered error when parsing attendence sheet.");
-			alert.setContentText("InvalidFormatException was caught.");
-			alert.show();
-			
+			showExceptionDialog("Error Parsing XLS", "Encountered error when parsing attendence sheet.", "InvalidFormatException was caught.", e);
 			e.printStackTrace();
 		} catch (IOException e) 
 		{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error Reading XLS");
-			alert.setHeaderText("Encounterted error when reading attendence sheet.");
-			alert.setContentText("IOException was caught.");
-			alert.show();
-			
+			showExceptionDialog("Error Reading XLS", "Encounterted error when reading attendence sheet.", "IOException was caught.", e);
 			e.printStackTrace();
 		}
 		
@@ -140,8 +136,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	@FXML
 	protected void handleExportButton()
 	{
-		
-	}
+			}
 	
 	@FXML
 	protected void handleImportButton()
@@ -158,5 +153,40 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	{
 		eventTypeVBox.getChildren().remove(view);
 		eventTypeViewList.remove(view);
+	}
+	
+	public void showExceptionDialog(String title, String headerText, String content, Exception e)
+	{
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(headerText);
+		alert.setContentText(content);
+
+		// Create expandable Exception.
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		String exceptionText = sw.toString();
+
+		Label label = new Label("The exception stacktrace was:");
+
+		TextArea textArea = new TextArea(exceptionText);
+		textArea.setEditable(false);
+		textArea.setWrapText(true);
+
+		textArea.setMaxWidth(Double.MAX_VALUE);
+		textArea.setMaxHeight(Double.MAX_VALUE);
+		GridPane.setVgrow(textArea, Priority.ALWAYS);
+		GridPane.setHgrow(textArea, Priority.ALWAYS);
+
+		GridPane expContent = new GridPane();
+		expContent.setMaxWidth(Double.MAX_VALUE);
+		expContent.add(label, 0, 0);
+		expContent.add(textArea, 0, 1);
+
+		// Set expandable Exception into the dialog pane.
+		alert.getDialogPane().setExpandableContent(expContent);
+
+		alert.showAndWait();
 	}
 }
