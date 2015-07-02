@@ -1,19 +1,34 @@
 package com.jgardella.app.frontend;
 
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-public class MainWindow extends Application {
+public class MainWindow extends Application 
+{
 
 	@Override
-	public void start(Stage primaryStage) {
-		primaryStage.setTitle("Duck Duck Goose");
+	public void start(Stage primaryStage) 
+	{
+		try 
+		{
+			Parent root = FXMLLoader.load(getClass().getResource("/view/MainWindow.fxml"));
+			
+			Scene scene = new Scene(root, 400, 500);
+			
+			primaryStage.setTitle("Duck Duck Goose");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 		
-		StackPane root = new StackPane();
-		primaryStage.setScene(new Scene(root, 300, 300));
-		primaryStage.show();
+		
 	}
 
 	public static void main(String[] args) {

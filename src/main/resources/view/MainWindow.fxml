@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+<?import com.jgardella.app.frontend.controller.EventTypeView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1">
+  <padding><Insets top="25" right="25" left="25" bottom="25"/></padding>
+  <EventTypeView fx:id="eventTypeView"/>
+</VBox>
+
