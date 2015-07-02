@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import com.jgardella.app.frontend.controller.EventTypeView?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1">
-  <padding><Insets top="25" right="25" left="25" bottom="25"/></padding>
-  <EventTypeView fx:id="eventTypeView"/>
-</VBox>
+<BorderPane fx:id="mainWin" xmlns:fx="http://javafx.com/fxml/1"
+	  fx:controller="com.jgardella.app.frontend.MainWindow">
+  <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
 
+  <center>	  
+	  <ScrollPane fx:id="eventTypeScrollPane" hbarPolicy="NEVER" fitToHeight="true">
+	      <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
+		  <content>
+			  <VBox fx:id="eventTypeVBox" spacing="10"/>
+		  </content>
+	  </ScrollPane>
+  </center>
+  
+  <bottom>
+  	  <HBox spacing="5">
+  	  	<Button text="Evaluate" onAction="#handleEvaluateButton"/>
+	  	<Button text="Add Event Type" onAction="#handleAddEventButton"/>
+  	  	<Button text="Export Config" onAction="#handleExportButton"/>
+	  </HBox>
+  </bottom>
+  
+</BorderPane>

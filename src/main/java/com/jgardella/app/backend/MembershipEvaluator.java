@@ -21,6 +21,11 @@ public class MembershipEvaluator
 	private ArrayList<Member> activeMembers;
 	private ArrayList<Member> inactiveMembers;
 
+	public MembershipEvaluator()
+	{
+		reqList = new ArrayList<Requirement>();
+	}
+	
 	/**
 	   Parses the given event type directories, generating an internal member list and event map.
 	   @param File... eventDirs The event type directories containing the attendance sheets.

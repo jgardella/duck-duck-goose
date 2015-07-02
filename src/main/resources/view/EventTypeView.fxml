@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 
-<fx:root type="javafx.scene.layout.GridPane" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1"
+		 spacing="10">
 	
-	<HBox GridPane.columnIndex="0"
-		  GridPane.rowIndex="0"
-		  spacing="20">
+	<Label style="-fx-font-weight:bold" fx:id="eventLabel">Event</Label>
+	
+	<HBox spacing="5">
 		<Label>Directory:</Label>
 		<TextField editable="false" fx:id="eventDirField"/>
 		<Button text="Browse" onAction="#handleBrowsePress"/>
+	</HBox>
+	
+	<HBox spacing="5">
+   		  <Label>Require:</Label>
+		  <TextField prefWidth="40" fx:id="numReqField"/>
+		  <Label>out of</Label>
+		  <TextField prefWidth="40" fx:id="totalField"/>
+		  <ComboBox fx:id="reqTypeComboBox" value="CONSECUTIVE">
+		  	<items>
+		  		<FXCollections fx:factory="observableArrayList">
+		  			<String fx:value="CONSECUTIVE"/>
+		  			<String fx:value="ABSOLUTE"/>
+		  		</FXCollections>
+		  	</items>
+		  </ComboBox>
 	</HBox>
 	
 </fx:root>
