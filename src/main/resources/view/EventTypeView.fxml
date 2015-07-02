@@ -2,6 +2,7 @@
 
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.control.*?>
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
@@ -9,12 +10,16 @@
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1"
 		 spacing="10">
 	
-	<Label style="-fx-font-weight:bold" fx:id="eventLabel">Event</Label>
+	<HBox alignment="TOP_LEFT">
+		<Label style="-fx-font-weight:bold" fx:id="eventLabel">Event</Label>
+		<Pane HBox.hgrow="ALWAYS"/>
+		<Button text="X" onAction="#handleEventRemoveButton"/>
+	</HBox>
 	
 	<HBox spacing="5">
 		<Label>Directory:</Label>
 		<TextField editable="false" fx:id="eventDirField"/>
-		<Button text="Browse" onAction="#handleBrowsePress"/>
+		<Button text="Browse" onAction="#handleBrowseButton"/>
 	</HBox>
 	
 	<HBox spacing="5">

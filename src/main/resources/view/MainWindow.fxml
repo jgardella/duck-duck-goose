@@ -22,9 +22,11 @@
   
   <bottom>
   	  <HBox spacing="5">
+        <padding><Insets top="10"/></padding>
   	  	<Button text="Evaluate" onAction="#handleEvaluateButton"/>
 	  	<Button text="Add Event Type" onAction="#handleAddEventButton"/>
-  	  	<Button text="Export Config" onAction="#handleExportButton"/>
+	  	<Button text="Import" onAction="#handleImportButton"/>
+  	  	<Button text="Export" onAction="#handleExportButton"/>
 	  </HBox>
   </bottom>
   

@@ -22,9 +22,10 @@ import com.jgardella.app.backend.MembershipEvaluator;
 import com.jgardella.app.backend.Requirement;
 import com.jgardella.app.backend.Requirement.ReqType;
 import com.jgardella.app.frontend.controller.EventTypeView;
+import com.jgardella.app.frontend.controller.EventTypeView.EventTypeViewCallback;
 
 // Main Window root and controller
-public class MainWindow extends Application 
+public class MainWindow extends Application implements EventTypeViewCallback
 {
 	
 	@FXML private BorderPane mainWin;
@@ -32,6 +33,8 @@ public class MainWindow extends Application
 	@FXML private VBox eventTypeVBox;
 	
 	private ArrayList<EventTypeView> eventTypeViewList = new ArrayList<EventTypeView>();
+	
+	private int eventTypeNum = 1;
 
 	@Override
 	public void start(Stage primaryStage) 
@@ -57,7 +60,7 @@ public class MainWindow extends Application
 	protected void handleAddEventButton()
 	{
 		// create new EventTypeView control, add to list and vbox
-		EventTypeView eventTypeView = new EventTypeView(eventTypeViewList.size() + 1);
+		EventTypeView eventTypeView = new EventTypeView(eventTypeNum++, this);
 		eventTypeViewList.add(eventTypeView);
 		eventTypeVBox.getChildren().add(eventTypeView);
 	}
@@ -135,7 +138,20 @@ public class MainWindow extends Application
 		
 	}
 	
+	@FXML
+	protected void handleImportButton()
+	{
+		
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public void deleteEventTypeView(EventTypeView view) 
+	{
+		eventTypeVBox.getChildren().remove(view);
+		eventTypeViewList.remove(view);
 	}
 }

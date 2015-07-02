@@ -23,10 +23,17 @@ public class EventTypeView extends VBox
 	private File eventTypeDirectory;
 	
 	private int viewNum;
+	private EventTypeViewCallback callback;
 	
-	public EventTypeView(int viewNum)
+	public interface EventTypeViewCallback
+	{
+		public void deleteEventTypeView(EventTypeView view);
+	}
+	
+	public EventTypeView(int viewNum, EventTypeViewCallback callback)
 	{
 		this.viewNum = viewNum;
+		this.callback = callback;
 		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/EventTypeView.fxml"));
 		fxmlLoader.setRoot(this);
@@ -85,7 +92,7 @@ public class EventTypeView extends VBox
 	}
 	
 	@FXML
-	protected void handleBrowsePress()
+	protected void handleBrowseButton()
 	{
 		DirectoryChooser chooser = new DirectoryChooser();
 		eventTypeDirectory = chooser.showDialog(this.getScene().getWindow());
@@ -101,6 +108,12 @@ public class EventTypeView extends VBox
 			eventDirField.setText("");
 			eventLabel.setText("Event Type #" + viewNum);
 		}
+	}
+	
+	@FXML
+	protected void handleEventRemoveButton()
+	{
+		callback.deleteEventTypeView(this);
 	}
 	
 }
