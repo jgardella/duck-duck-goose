@@ -12,9 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -37,6 +38,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	@FXML private BorderPane mainWin;
 	
 	@FXML private VBox eventTypeVBox;
+	@FXML private Button evaluateButton;
 	
 	private ArrayList<EventTypeView> eventTypeViewList = new ArrayList<EventTypeView>();
 	
@@ -70,6 +72,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		EventTypeView eventTypeView = new EventTypeView(eventTypeNum++, this);
 		eventTypeViewList.add(eventTypeView);
 		eventTypeVBox.getChildren().add(eventTypeView);
+		evaluateButton.setDisable(false);
 	}
 	
 	@FXML
@@ -136,7 +139,8 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	@FXML
 	protected void handleExportButton()
 	{
-			}
+			
+	}
 	
 	@FXML
 	protected void handleImportButton()
@@ -153,6 +157,10 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	{
 		eventTypeVBox.getChildren().remove(view);
 		eventTypeViewList.remove(view);
+		if(eventTypeViewList.size() == 0)
+		{
+			evaluateButton.setDisable(true);
+		}
 	}
 	
 	public void showExceptionDialog(String title, String headerText, String content, Exception e)

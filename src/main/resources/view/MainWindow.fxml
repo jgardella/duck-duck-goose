@@ -11,6 +11,7 @@
 	  fx:controller="com.jgardella.app.frontend.MainWindow">
   <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
 
+  <!-- logo -->
   <top>
   	<VBox>
         <padding><Insets bottom="10"/></padding>
@@ -19,6 +20,7 @@
 	</VBox>
   </top>
 
+  <!-- Event type list -->
   <center>	  
 	  <ScrollPane fx:id="eventTypeScrollPane" hbarPolicy="NEVER" fitToHeight="true">
 	      <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
@@ -28,10 +30,11 @@
 	  </ScrollPane>
   </center>
   
+  <!-- Button bar -->
   <bottom>
   	  <HBox spacing="5">
         <padding><Insets top="10"/></padding>
-  	  	<Button text="Evaluate" onAction="#handleEvaluateButton"/>
+  	  	<Button fx:id="evaluateButton" disable="true" text="Evaluate" onAction="#handleEvaluateButton"/>
 	  	<Button text="Add Event Type" onAction="#handleAddEventButton"/>
 	  	<Button text="Import" onAction="#handleImportButton"/>
   	  	<Button text="Export" onAction="#handleExportButton"/>
