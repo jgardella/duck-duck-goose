@@ -24,10 +24,10 @@ import javafx.stage.Stage;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import com.jgardella.app.backend.Member;
 import com.jgardella.app.backend.MembershipEvaluator;
 import com.jgardella.app.backend.Requirement;
 import com.jgardella.app.backend.Requirement.ReqType;
+import com.jgardella.app.frontend.controller.AttendanceDialog;
 import com.jgardella.app.frontend.controller.EventTypeView;
 import com.jgardella.app.frontend.controller.EventTypeView.EventTypeViewCallback;
 
@@ -125,15 +125,16 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		// evaluate membership
 		evaluator.evaluateMembership();
 		
-		ArrayList<Member> activeMembers = evaluator.getActiveMembers();
-		for(Member member : activeMembers)
-		{
-			System.out.println(member.getFullName());
-		}
-		
-		ArrayList<Member> inactiveMembers = evaluator.getNonactiveMembers();
 		// display membership status
+		Stage attendancePopup = new Stage();
+		AttendanceDialog dialog = new AttendanceDialog(evaluator.getActiveMembers(), evaluator.getNonactiveMembers());
 		
+		Scene scene = new Scene(dialog, 350, 450);
+		
+		attendancePopup.setTitle("Attendance");
+		attendancePopup.setScene(scene);
+		attendancePopup.setResizable(false);
+		attendancePopup.show();
 	}
 	
 	@FXML
@@ -163,6 +164,13 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		}
 	}
 	
+	/**
+	 * Shows an exception dialog for the given exception
+	 * @param title Title for the dialog
+	 * @param headerText Header text for the dialog
+	 * @param content Content text for the dialog
+	 * @param e Exception to display in dialog
+	 */
 	public void showExceptionDialog(String title, String headerText, String content, Exception e)
 	{
 		Alert alert = new Alert(AlertType.ERROR);

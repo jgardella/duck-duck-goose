@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+
+<fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1"
+		 spacing="10">
+	    <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
+		<VBox spacing="10">
+			<Label fx:id="activeLabel" style="-fx-font-weight:bold">Active Members</Label>
+			<ScrollPane hbarPolicy="NEVER" fitToHeight="true">
+				<content>
+					<VBox fx:id="activeMembersVBox" spacing="5">
+						<!-- populated from constructor -->
+					</VBox>	
+				</content>
+			</ScrollPane>
+		</VBox>
+		
+		<VBox spacing="10">
+			<Label fx:id="inactiveLabel" style="-fx-font-weight:bold">Inactive Members</Label>
+			<ScrollPane hbarPolicy="NEVER" fitToHeight="true">
+				<content>
+					<VBox fx:id="inactiveMembersVBox" spacing="5">
+						<!-- populated from constructor -->
+					</VBox>
+				</content>
+			</ScrollPane>
+		</VBox>
+</fx:root>
+
