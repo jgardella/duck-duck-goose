@@ -24,3 +24,7 @@ The JUnit tests only cover the backend (and currently do quite a poor job of it)
 ```
 mvn jfx:run
 ```
+
+## License
+
+Licensed under the MIT license.
