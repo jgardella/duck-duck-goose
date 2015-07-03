@@ -156,19 +156,22 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		
 		File exportFile = chooser.showSaveDialog(mainWin.getScene().getWindow());
 		
-		try 
+		if(exportFile != null)
 		{
-			BufferedWriter writer = new BufferedWriter(new FileWriter(exportFile));
-			for(EventTypeView view : eventTypeViewList)
+			try 
 			{
-				writer.write(view.getEventTypeDirectory() + "," + view.getReqType() + "," + view.getNumReqField() + "," + view.getTotalField() +"\n");
+				BufferedWriter writer = new BufferedWriter(new FileWriter(exportFile));
+				for(EventTypeView view : eventTypeViewList)
+				{
+					writer.write(view.getEventTypeDirectory() + "," + view.getReqType() + "," + view.getNumReqField() + "," + view.getTotalField() +"\n");
+				}
+				writer.close();
+			} catch (IOException e) 
+			{
+				showExceptionDialog("Export Error", "Encountered error when exporting file '" + exportFile.getName() + "'.",
+						"IOException was caught.", e);
+				e.printStackTrace();
 			}
-			writer.close();
-		} catch (IOException e) 
-		{
-			showExceptionDialog("Export Error", "Encountered error when exporting file '" + exportFile.getName() + "'.",
-					"IOException was caught.", e);
-			e.printStackTrace();
 		}
 	}
 	
@@ -179,52 +182,53 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		
 		File importFile = chooser.showOpenDialog(mainWin.getScene().getWindow());
 		
-		this.eventTypeNum = 1;
-		this.eventTypeViewList.clear();
-		eventTypeVBox.getChildren().clear();
-
-		try 
+		if(importFile != null)
 		{
-			BufferedReader reader = new BufferedReader(new FileReader(importFile));
-			int lineNum = 1;
-			while(reader.ready())
+			this.eventTypeNum = 1;
+			this.eventTypeViewList.clear();
+			eventTypeVBox.getChildren().clear();
+	
+			try(BufferedReader reader = new BufferedReader(new FileReader(importFile))) 
 			{
-				String line = reader.readLine();
-				String[] splitLine = line.split(",");
-				
-				if(splitLine.length != 4)
+				int lineNum = 1;
+				while(reader.ready())
 				{
-					this.eventTypeNum = 1;
-					eventTypeViewList.clear();
-					eventTypeVBox.getChildren().clear();
-					evaluateButton.setDisable(true);
+					String line = reader.readLine();
+					String[] splitLine = line.split(",");
 					
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("File Format Error");
-					alert.setHeaderText("Specified import file is improperly formatted.");
-					alert.setContentText("Parsing error on line " + lineNum + ".");
-					alert.show();
-					return;
+					if(splitLine.length != 4)
+					{
+						this.eventTypeNum = 1;
+						eventTypeViewList.clear();
+						eventTypeVBox.getChildren().clear();
+						evaluateButton.setDisable(true);
+						
+						Alert alert = new Alert(AlertType.ERROR);
+						alert.setTitle("File Format Error");
+						alert.setHeaderText("Specified import file is improperly formatted.");
+						alert.setContentText("Parsing error on line " + lineNum + ".");
+						alert.show();
+						return;
+					}
+					
+					EventTypeView view = new EventTypeView(eventTypeNum, this, splitLine[0], splitLine[1], splitLine[2], splitLine[3]);
+					eventTypeViewList.add(view);
+					eventTypeVBox.getChildren().add(view);
+					
+					lineNum++;
+					eventTypeNum++;
 				}
-				
-				EventTypeView view = new EventTypeView(eventTypeNum, this, splitLine[0], splitLine[1], splitLine[2], splitLine[3]);
-				eventTypeViewList.add(view);
-				eventTypeVBox.getChildren().add(view);
-				
-				lineNum++;
-				eventTypeNum++;
-			}
-			if(eventTypeViewList.size() > 0)
+				if(eventTypeViewList.size() > 0)
+				{
+					evaluateButton.setDisable(false);
+				}
+			} catch (IOException e) 
 			{
-				evaluateButton.setDisable(false);
-			}
-			reader.close();
-		} catch (IOException e) 
-		{
-			showExceptionDialog("Import Error", "Encountered error when importing file '" + importFile.getName() + "'.",
-					"IOException was caught.", e);
-			e.printStackTrace();
-		} 
+				showExceptionDialog("Import Error", "Encountered error when importing file '" + importFile.getName() + "'.",
+						"IOException was caught.", e);
+				e.printStackTrace();
+			} 
+		}
 	}
 	
 	public static void main(String[] args) {

@@ -1,5 +1,8 @@
 package com.jgardella.app.frontend.controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
 import com.jgardella.app.backend.Member;
 
@@ -51,6 +55,39 @@ public class AttendanceDialog extends HBox
 		catch(IOException exception)
 		{
 			throw new RuntimeException(exception);
+		}
+	}
+	
+	@FXML
+	protected void handleExportActiveButton()
+	{
+		FileChooser chooser = new FileChooser();
+		File memberFile = chooser.showSaveDialog(this.getScene().getWindow());
+		writeMemberListToFile(memberFile, activeMembers);
+	}
+	
+	@FXML
+	protected void handleExportInactiveButton()
+	{
+		FileChooser chooser = new FileChooser();
+		File memberFile = chooser.showSaveDialog(this.getScene().getWindow());
+		writeMemberListToFile(memberFile, inactiveMembers);
+	}
+	
+	private void writeMemberListToFile(File file, ArrayList<Member> memberList)
+	{
+		if(file != null)
+		{
+			try(BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
+			{
+				for(int i = 0; i < memberList.size(); i++)
+				{
+					writer.write((i + 1) + ". " + memberList.get(i).getFullName() + "\n");
+				}
+			} catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
 		}
 	}
 	

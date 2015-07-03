@@ -123,7 +123,6 @@ public class MembershipEvaluator
 			for(int i = 0; i < eventList.size() && i < req.getEventNumLimit(); i++)
 			{
 				Event event = eventList.get(i);
-				System.out.println("Checking event: " + event.getName());
 				if(event.getAttendance().contains(member))
 				{
 					numAbsolute++;

@@ -8,7 +8,7 @@
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1"
 		 spacing="10">
 	    <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
-		<VBox spacing="10">
+		<VBox spacing="10" VBox.vgrow="ALWAYS">
 			<Label fx:id="activeLabel" style="-fx-font-weight:bold">Active Members</Label>
 			<ScrollPane hbarPolicy="NEVER" fitToHeight="true">
 				<content>
@@ -17,6 +17,7 @@
 					</VBox>	
 				</content>
 			</ScrollPane>
+			<Button text="Export" onAction="#handleExportActiveButton"/>
 		</VBox>
 		
 		<VBox spacing="10">
@@ -28,6 +29,7 @@
 					</VBox>
 				</content>
 			</ScrollPane>
+			<Button text="Export" onAction="#handleExportInactiveButton"/>
 		</VBox>
+		
 </fx:root>
-
