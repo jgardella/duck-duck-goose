@@ -153,6 +153,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	protected void handleExportButton()
 	{
 		FileChooser chooser = new FileChooser();
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		
 		File exportFile = chooser.showSaveDialog(mainWin.getScene().getWindow());
 		
@@ -179,7 +180,8 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	protected void handleImportButton()
 	{
 		FileChooser chooser = new FileChooser();
-		
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+
 		File importFile = chooser.showOpenDialog(mainWin.getScene().getWindow());
 		
 		if(importFile != null)

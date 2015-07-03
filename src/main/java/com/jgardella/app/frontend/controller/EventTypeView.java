@@ -120,6 +120,8 @@ public class EventTypeView extends VBox
 	protected void handleBrowseButton()
 	{
 		DirectoryChooser chooser = new DirectoryChooser();
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		
 		eventTypeDirectory = chooser.showDialog(this.getScene().getWindow());
 		
 		// update text field

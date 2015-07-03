@@ -62,6 +62,7 @@ public class AttendanceDialog extends HBox
 	protected void handleExportActiveButton()
 	{
 		FileChooser chooser = new FileChooser();
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		File memberFile = chooser.showSaveDialog(this.getScene().getWindow());
 		writeMemberListToFile(memberFile, activeMembers);
 	}
@@ -70,6 +71,7 @@ public class AttendanceDialog extends HBox
 	protected void handleExportInactiveButton()
 	{
 		FileChooser chooser = new FileChooser();
+		chooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		File memberFile = chooser.showSaveDialog(this.getScene().getWindow());
 		writeMemberListToFile(memberFile, inactiveMembers);
 	}
