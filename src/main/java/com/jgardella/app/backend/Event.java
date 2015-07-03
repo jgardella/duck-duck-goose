@@ -58,6 +58,9 @@ public class Event implements Comparable<Event>
 		return attendance;
 	}
 
+	/**
+	 * Compares two events (newer events come before older events).
+	 */
 	public int compareTo(Event event)
 	{
 		return event.date.compareTo(date);

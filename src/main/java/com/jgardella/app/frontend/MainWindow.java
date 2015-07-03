@@ -3,14 +3,13 @@ package com.jgardella.app.frontend;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javafx.application.Application;
 import javafx.fxml.FXML;
@@ -31,6 +30,7 @@ import javafx.stage.Stage;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
+import com.jgardella.app.backend.Member;
 import com.jgardella.app.backend.MembershipEvaluator;
 import com.jgardella.app.backend.Requirement;
 import com.jgardella.app.backend.Requirement.ReqType;
@@ -134,6 +134,11 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		
 		// display membership status
 		Stage attendancePopup = new Stage();
+		ArrayList<Member> activeMembers = evaluator.getActiveMembers();
+		ArrayList<Member> inactiveMembers = evaluator.getNonactiveMembers();
+		Collections.sort(activeMembers);
+		Collections.sort(inactiveMembers);
+		
 		AttendanceDialog dialog = new AttendanceDialog(evaluator.getActiveMembers(), evaluator.getNonactiveMembers());
 		
 		Scene scene = new Scene(dialog, 350, 450);

@@ -1,6 +1,6 @@
 package com.jgardella.app.backend;
 
-public class Member
+public class Member implements Comparable<Member>
 {
 	private String firstName;
 	private String lastName;
@@ -77,6 +77,15 @@ public class Member
 	public int hashCode()
 	{
 		return id;
+	}
+
+	/**
+	 * Compare this Member to another Member (alphabetical by last name).
+	 */
+	@Override
+	public int compareTo(Member member) 
+	{
+		return this.getLastName().compareTo(member.getLastName());
 	}
 
 }
