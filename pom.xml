@@ -4,7 +4,7 @@
   <groupId>com.jgardella.app</groupId>
   <artifactId>ddg</artifactId>
   <packaging>jar</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>ddg</name>
   <url>http://maven.apache.org</url>
   <properties>
