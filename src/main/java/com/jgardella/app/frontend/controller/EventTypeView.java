@@ -50,6 +50,31 @@ public class EventTypeView extends VBox
 		}
 	}
 	
+	public EventTypeView(int viewNum, EventTypeViewCallback callback, String eventTypeDir, String reqType, String numReqFieldText, String totalFieldText) 
+	{
+		this.viewNum = viewNum;
+		this.callback = callback;
+		
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/EventTypeView.fxml"));
+		fxmlLoader.setRoot(this);
+		fxmlLoader.setController(this);
+		
+		try 
+		{
+			fxmlLoader.load();
+			eventDirField.setText(eventTypeDir);
+			eventTypeDirectory = new File(eventTypeDir);
+			reqTypeComboBox.setValue(reqType);
+			numReqField.setText(numReqFieldText);
+			totalField.setText(totalFieldText);
+			eventLabel.setText("Event Type #" + viewNum + " (" + eventTypeDirectory.getName() + ")");
+		}
+		catch(IOException exception)
+		{
+			throw new RuntimeException(exception);
+		}
+	}
+
 	/**
 	 * @return The selected directory for this event type (null if no directory selected).
 	 */

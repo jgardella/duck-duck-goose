@@ -1,8 +1,14 @@
 package com.jgardella.app.frontend;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
@@ -20,6 +26,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -140,13 +147,79 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	@FXML
 	protected void handleExportButton()
 	{
-			
+		FileChooser chooser = new FileChooser();
+		
+		File exportFile = chooser.showSaveDialog(mainWin.getScene().getWindow());
+		
+		try 
+		{
+			BufferedWriter writer = new BufferedWriter(new FileWriter(exportFile));
+			for(EventTypeView view : eventTypeViewList)
+			{
+				writer.write(view.getEventTypeDirectory() + "," + view.getReqType() + "," + view.getNumReqField() + "," + view.getTotalField() +"\n");
+			}
+			writer.close();
+		} catch (IOException e) 
+		{
+			showExceptionDialog("Export Error", "Encountered error when exporting file '" + exportFile.getName() + "'.",
+					"IOException was caught.", e);
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
 	protected void handleImportButton()
 	{
+		FileChooser chooser = new FileChooser();
 		
+		File importFile = chooser.showOpenDialog(mainWin.getScene().getWindow());
+		
+		this.eventTypeNum = 1;
+		this.eventTypeViewList.clear();
+		eventTypeVBox.getChildren().clear();
+
+		try 
+		{
+			BufferedReader reader = new BufferedReader(new FileReader(importFile));
+			int lineNum = 1;
+			while(reader.ready())
+			{
+				String line = reader.readLine();
+				String[] splitLine = line.split(",");
+				
+				if(splitLine.length != 4)
+				{
+					this.eventTypeNum = 1;
+					eventTypeViewList.clear();
+					eventTypeVBox.getChildren().clear();
+					evaluateButton.setDisable(true);
+					
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("File Format Error");
+					alert.setHeaderText("Specified import file is improperly formatted.");
+					alert.setContentText("Parsing error on line " + lineNum + ".");
+					alert.show();
+					return;
+				}
+				
+				EventTypeView view = new EventTypeView(eventTypeNum, this, splitLine[0], splitLine[1], splitLine[2], splitLine[3]);
+				eventTypeViewList.add(view);
+				eventTypeVBox.getChildren().add(view);
+				
+				lineNum++;
+				eventTypeNum++;
+			}
+			if(eventTypeViewList.size() > 0)
+			{
+				evaluateButton.setDisable(false);
+			}
+			reader.close();
+		} catch (IOException e) 
+		{
+			showExceptionDialog("Import Error", "Encountered error when importing file '" + importFile.getName() + "'.",
+					"IOException was caught.", e);
+			e.printStackTrace();
+		} 
 	}
 	
 	public static void main(String[] args) {

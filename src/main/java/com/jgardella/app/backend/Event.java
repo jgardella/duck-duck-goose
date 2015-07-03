@@ -60,7 +60,7 @@ public class Event implements Comparable<Event>
 
 	public int compareTo(Event event)
 	{
-		return date.compareTo(event.date);
+		return event.date.compareTo(date);
 	}
 
 }
