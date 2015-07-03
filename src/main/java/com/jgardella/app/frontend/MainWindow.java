@@ -141,7 +141,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		
 		AttendanceDialog dialog = new AttendanceDialog(evaluator.getActiveMembers(), evaluator.getNonactiveMembers());
 		
-		Scene scene = new Scene(dialog, 350, 450);
+		Scene scene = new Scene(dialog, 375, 450);
 		
 		attendancePopup.setTitle("Attendance");
 		attendancePopup.setScene(scene);

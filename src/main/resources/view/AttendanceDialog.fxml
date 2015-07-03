@@ -6,30 +6,33 @@
 <?import javafx.scene.control.*?>
 
 <fx:root type="javafx.scene.layout.HBox" xmlns:fx="http://javafx.com/fxml/1"
-		 spacing="10">
+		 spacing="10"
+		 prefWidth="370">
 	    <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
-		<VBox spacing="10" VBox.vgrow="ALWAYS">
-			<Label fx:id="activeLabel" style="-fx-font-weight:bold">Active Members</Label>
-			<ScrollPane hbarPolicy="NEVER" fitToHeight="true">
+		<VBox spacing="10" prefWidth="185">
+			<HBox alignment="CENTER"><Label fx:id="activeLabel" style="-fx-font-weight:bold">Active Members</Label></HBox>
+			<ScrollPane hbarPolicy="NEVER" fitToWidth="true" VBox.vgrow="ALWAYS">
 				<content>
 					<VBox fx:id="activeMembersVBox" spacing="5">
+				    	<padding><Insets top="2" right="2" left="2" bottom="2"/></padding>
 						<!-- populated from constructor -->
 					</VBox>	
 				</content>
 			</ScrollPane>
-			<Button text="Export" onAction="#handleExportActiveButton"/>
+			<Button text="Export" maxWidth="Infinity" onAction="#handleExportActiveButton"/>
 		</VBox>
 		
-		<VBox spacing="10">
-			<Label fx:id="inactiveLabel" style="-fx-font-weight:bold">Inactive Members</Label>
-			<ScrollPane hbarPolicy="NEVER" fitToHeight="true">
+		<VBox spacing="10" prefWidth="185">
+			<HBox alignment="CENTER"><Label fx:id="inactiveLabel" style="-fx-font-weight:bold">Inactive Members</Label></HBox>
+			<ScrollPane hbarPolicy="NEVER" fitToHeight="true" VBox.vgrow="ALWAYS">
 				<content>
 					<VBox fx:id="inactiveMembersVBox" spacing="5">
+				   		<padding><Insets top="2" right="2" left="2" bottom="2"/></padding>
 						<!-- populated from constructor -->
 					</VBox>
 				</content>
 			</ScrollPane>
-			<Button text="Export" onAction="#handleExportInactiveButton"/>
+			<Button text="Export" maxWidth="Infinity" onAction="#handleExportInactiveButton"/>
 		</VBox>
 		
 </fx:root>
