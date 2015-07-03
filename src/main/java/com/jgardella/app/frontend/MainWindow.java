@@ -46,6 +46,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	
 	@FXML private VBox eventTypeVBox;
 	@FXML private Button evaluateButton;
+	@FXML private Label getStartedLabel;
 	
 	private ArrayList<EventTypeView> eventTypeViewList = new ArrayList<EventTypeView>();
 	
@@ -80,6 +81,8 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		eventTypeViewList.add(eventTypeView);
 		eventTypeVBox.getChildren().add(eventTypeView);
 		evaluateButton.setDisable(false);
+		getStartedLabel.setVisible(false);
+		getStartedLabel.setManaged(false);
 	}
 	
 	@FXML
@@ -223,6 +226,8 @@ public class MainWindow extends Application implements EventTypeViewCallback
 				if(eventTypeViewList.size() > 0)
 				{
 					evaluateButton.setDisable(false);
+					getStartedLabel.setVisible(false);
+					getStartedLabel.setManaged(false);
 				}
 			} catch (IOException e) 
 			{
@@ -245,6 +250,8 @@ public class MainWindow extends Application implements EventTypeViewCallback
 		if(eventTypeViewList.size() == 0)
 		{
 			evaluateButton.setDisable(true);
+			getStartedLabel.setVisible(true);
+			getStartedLabel.setManaged(true);
 		}
 	}
 	

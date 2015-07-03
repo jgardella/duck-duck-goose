@@ -3,6 +3,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import com.jgardella.app.frontend.controller.EventTypeView?>
@@ -25,7 +26,10 @@
 	  <ScrollPane fx:id="eventTypeScrollPane" hbarPolicy="NEVER" fitToHeight="true">
 	      <padding><Insets top="10" right="10" left="10" bottom="10"/></padding>
 		  <content>
-			  <VBox fx:id="eventTypeVBox" spacing="10"/>
+		  	  <VBox>
+	  		  	  <Label fx:id="getStartedLabel">No events :(. Add one or import a config to get started!</Label>
+				  <VBox fx:id="eventTypeVBox" spacing="10"/>
+			  </VBox>
 		  </content>
 	  </ScrollPane>
   </center>
@@ -36,6 +40,7 @@
         <padding><Insets top="10"/></padding>
   	  	<Button fx:id="evaluateButton" disable="true" text="Evaluate" onAction="#handleEvaluateButton"/>
 	  	<Button text="Add Event Type" onAction="#handleAddEventButton"/>
+		<Pane HBox.hgrow="ALWAYS"/>
 	  	<Button text="Import" onAction="#handleImportButton"/>
   	  	<Button text="Export" onAction="#handleExportButton"/>
 	  </HBox>
