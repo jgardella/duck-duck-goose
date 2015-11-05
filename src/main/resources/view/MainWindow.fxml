@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import com.jgardella.app.frontend.controller.EventTypeView?>
@@ -16,6 +17,13 @@
   <top>
   	<VBox>
         <padding><Insets bottom="10"/></padding>
+        <HBox alignment="CENTER">
+	        <ImageView fitWidth="100" fitHeight="100">
+	        	<image>
+	        		<Image url="@../image/ddg_logo.png"/>
+	        	</image>
+	        </ImageView>
+        </HBox>
   		<HBox alignment="CENTER"><Label style="-fx-font-size: 30;">Duck Duck Goose</Label></HBox>
   		<HBox alignment="CENTER"><Label style="-fx-font-size: 15;">Attendance Tracker</Label></HBox>
 	</VBox>

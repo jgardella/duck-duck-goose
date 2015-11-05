@@ -21,6 +21,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -51,6 +52,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 	private ArrayList<EventTypeView> eventTypeViewList = new ArrayList<EventTypeView>();
 	
 	private int eventTypeNum = 1;
+	private final String LOGO_PATH = "/image/ddg_logo.png";
 
 	@Override
 	public void start(Stage primaryStage) 
@@ -62,6 +64,7 @@ public class MainWindow extends Application implements EventTypeViewCallback
 			Scene scene = new Scene(root, 400, 500);
 			
 			primaryStage.setTitle("Duck Duck Goose");
+			primaryStage.getIcons().add(new Image(LOGO_PATH));
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
