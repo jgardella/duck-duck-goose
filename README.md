@@ -1,5 +1,5 @@
 # Duck Duck Goose
-![Duck Duck Goose logo](https://raw.githubusercontent.com/jgardella/duck-duck-goose/master/src/main/resources/image/ddg_logo_small.png)
+<img src="https://raw.githubusercontent.com/jgardella/duck-duck-goose/master/src/main/resources/image/ddg_logo.png" alt="duck duck goose logo" width="200">
 Duck Duck Goose is an application for determing active members of a club, based on `.xlsx` attendance sheets and given requirements for active membership. Written specifically for use at Stevens Institute of Technology.
 
 ## Installation and Usage
