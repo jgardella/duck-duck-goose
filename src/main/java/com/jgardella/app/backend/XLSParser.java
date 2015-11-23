@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 public class XLSParser
 {
 
-	static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd  h:mm a");
+	static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd h:mm a");
 
 	public static Event parseXLS(File xlsFile) throws IOException, InvalidFormatException
 	{
@@ -35,6 +35,10 @@ public class XLSParser
 			if(row.getRowNum() == 1) // create event from first row with data
 			{
 				String str_eventDate = row.getCell(0).getRichStringCellValue().getString();
+				// if the hour is a single digit, there is an extra space in the date.
+				// remove it so it can be parsed correctly.
+				// remove any excessive spacing, while we're at it
+				str_eventDate = str_eventDate.replaceAll(" +", " ");
 				LocalDateTime eventDate = LocalDateTime.parse(str_eventDate, TIME_FORMAT);
 				event = new Event(xlsFile.getName().substring(0, xlsFile.getName().indexOf('.')), xlsFile.getParentFile().getName(), eventDate);
 			}
