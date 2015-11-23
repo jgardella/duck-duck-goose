@@ -47,15 +47,19 @@ public class MembershipEvaluator
 		// iterate through every attendance sheet for this event type
 		for(File file : attendanceSheets)
 		{
-			Event parsedEvent = XLSParser.parseXLS(file);
-			events.add(parsedEvent); // add event to event list for this type
-
-			// add new members to member list
-			for(Member member : parsedEvent.getAttendance())
+			// only parse xlsx files
+			if(file.getName().endsWith(".xlsx"))
 			{
-				if(!memberList.contains(member))
+				Event parsedEvent = XLSParser.parseXLS(file);
+				events.add(parsedEvent); // add event to event list for this type
+	
+				// add new members to member list
+				for(Member member : parsedEvent.getAttendance())
 				{
-					memberList.add(member);
+					if(!memberList.contains(member))
+					{
+						memberList.add(member);
+					}
 				}
 			}
 		}
